@@ -39,7 +39,12 @@
     <img src="{{ product.image_url }}" alt="{{ product.name }}">
     <h1>{{ product.name }}</h1>
     <p>{{ product.description }}</p>
-    <p class="price">${{ product.price }}</p>
+    {% if product.is_holiday_discount_active and product.holiday_discount_price %}
+    <p>原价：<del>{{ product.price }}</del></p>
+    <p>折扣价：<strong>{{ product.holiday_discount_price }}</strong></p>
+    {% else %}
+        <p>价格：{{ product.price }}</p>
+    {% endif %}
     <a href="{% url 'index' %}">返回主页</a>
   </div>
 </body>

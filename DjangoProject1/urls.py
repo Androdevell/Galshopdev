@@ -18,10 +18,15 @@ Including another URLconf
 from home import views
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path("baidu",views.baidu,name="baidu"),
     #    path('admin/', admin.site.urls),
     path("",views.index,name="index"),
     path('admin', admin.site.urls),
     path('product/<int:pk>', views.product_detail, name='product_detail'),
+    path('login/', views.user_login, name='login'),
+    path('register/', views.user_register, name='register'),
+    #path('logout/', views.LogoutView.as_view(next_page='/'), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
 ]
